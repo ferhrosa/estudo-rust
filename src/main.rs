@@ -3,6 +3,7 @@ fn main() {
     vetor();
     matriz();
     enums();
+    conteudo_opcional();
 }
 
 fn vetor() {
@@ -104,4 +105,23 @@ fn cores() {
             } => "CMYK desconhecido",
         }
     );
+}
+
+fn conteudo_opcional() {
+    // let conteudo_arquivo = ler_arquivo(String::from("existente"));
+    let conteudo_arquivo = ler_arquivo(String::from("não existente"));
+
+    match &conteudo_arquivo {
+        Some(conteudo) => println!("Arquivo encontrado: {}", conteudo),
+        None => println!("Arquivo não existe."),
+    }
+
+    println!("{:?}", conteudo_arquivo);
+}
+
+fn ler_arquivo(caminho: String) -> Option<String> {
+    match caminho.as_str() {
+        "existente" => Some(String::from("Conteúdo do arquivo")),
+        _ => None,
+    }
 }
