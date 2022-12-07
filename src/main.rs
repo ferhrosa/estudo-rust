@@ -108,8 +108,8 @@ fn cores() {
 }
 
 fn conteudo_opcional() {
-    // let conteudo_arquivo = ler_arquivo(String::from("existente"));
-    let conteudo_arquivo = ler_arquivo(String::from("não existente"));
+    let conteudo_arquivo = ler_arquivo(String::from("existente"));
+    // let conteudo_arquivo = ler_arquivo(String::from("não existente"));
 
     match &conteudo_arquivo {
         Some(conteudo) => println!("Arquivo encontrado: {}", conteudo),
@@ -117,6 +117,11 @@ fn conteudo_opcional() {
     }
 
     println!("{:?}", conteudo_arquivo);
+
+    if let Some(conteudo) = conteudo_arquivo {
+        println!("Agora tenho certeza que há conteúdo: {}", conteudo);
+    }
+    // Também é possível fazer while let
 }
 
 fn ler_arquivo(caminho: String) -> Option<String> {
