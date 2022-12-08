@@ -5,6 +5,7 @@ fn main() {
     enums();
     conteudo_opcional();
     vectors();
+    conta_corrente();
 }
 
 fn array() {
@@ -176,4 +177,43 @@ fn vectors() {
             }
         )
     }
+}
+
+struct Titular {
+    nome: String,
+    sobrenome: String,
+}
+
+impl Titular {
+    fn nome_completo(self) -> String {
+        format!("{} {}", self.nome, self.sobrenome)
+    }
+}
+
+struct Conta {
+    titular: Titular,
+    saldo: f64,
+}
+
+impl Conta {
+    fn sacar(&mut self, valor: f64){
+        self.saldo -= valor;
+    }
+}
+
+fn conta_corrente() {
+    let mut conta = Conta {
+        titular: Titular {
+            nome: String::from("Fernando"),
+            sobrenome: String::from("Rosa"),
+        },
+        saldo: 100.00,
+    };
+
+    conta.sacar(25.0);
+
+    println!(
+        "Conta corrente: Titular = {}, Saldo = {}",
+        conta.titular.nome_completo(), conta.saldo
+    );
 }
