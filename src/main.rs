@@ -1,12 +1,13 @@
 fn main() {
     println!("Olá mundo!");
-    vetor();
+    array();
     matriz();
     enums();
     conteudo_opcional();
+    vectors();
 }
 
-fn vetor() {
+fn array() {
     // let notas = [6.5; 4];
     let notas = [10f32, 8f32, 9.5, 6.0];
 
@@ -128,5 +129,51 @@ fn ler_arquivo(caminho: String) -> Option<String> {
     match caminho.as_str() {
         "existente" => Some(String::from("Conteúdo do arquivo")),
         _ => None,
+    }
+}
+
+fn vectors() {
+    // let notas = Vec::<f32>::new();
+    // let mut notas: Vec<f32> = Vec::new();
+    let mut notas: Vec<f32> = Vec::with_capacity(4);
+    notas.push(10.0);
+    notas.push(8.8);
+    notas.push(6.5);
+
+    // let mut notas: Vec<f32> = vec![10.0, 8.8, 6.5];
+
+    println!("Capacidade = {}", notas.capacity());
+    println!("notas = {:?}", notas);
+
+    notas.push(6.8);
+    println!("notas = {:?}", notas);
+
+    println!("Capacidade = {}", notas.capacity());
+
+    if let Some(nota) = notas.pop() {
+        println!("Última nota (removida) = {}", nota);
+        println!("notas = {:?}", notas);
+    }
+
+    println!("Capacidade = {}", notas.capacity());
+
+    // while let Some(nota) = notas.pop() {
+    //     println!("Última nota (removida) = {}", nota);
+    //     println!("notas = {:?}", notas);
+    // }
+
+    for nota in &notas {
+        println!("Nota = {}", nota);
+    }
+
+    for i in 0..=6 {
+        println!(
+            "Nota {} = {}",
+            i + 1,
+            match notas.get(i) {
+                Some(n) => *n,
+                None => 0.0,
+            }
+        )
     }
 }
